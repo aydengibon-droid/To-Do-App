@@ -1,3 +1,5 @@
+import Listitem from "./Listitem"
+
 function App() {
   
   return (
@@ -18,7 +20,7 @@ function App() {
         </div>
       </div>
       {/* end btns */}
-      <div>List</div>
+      <div><Listitem/></div>
       {/* end list */}
       </div>
       </div>
