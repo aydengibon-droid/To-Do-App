@@ -1,5 +1,5 @@
-import AddTask from "./components/AddTask"
-import ListItem from "./components/ListItem"
+import AddTask from "./Components/AddTask"
+import ListItem from "./Components/ListItem"
 import { useState } from "react"
 
 
@@ -11,7 +11,7 @@ function App() {
     createdOn: new Date()
   },])
 
-  const addNewTask = (taskDetails) => {
+  const addNewTask = (taskDetails: string) => {
     const newTask = {
       id: tasks.length + 1,
       task: taskDetails,
@@ -22,10 +22,19 @@ function App() {
   }
 
   const deleteTask = (taskId: number) => {
-    console.log(taskId)
     const updatedTasks = tasks.filter((task) => task.id !== taskId)
     setTasks(updatedTasks)
   } 
+
+  const toggleComplete = (taskId: number) => {
+    const updatedTasks = tasks.map((task) => {
+      if (task.id === taskId) {
+        return { ...task, completed: !task.completed }
+      }
+      return task
+    })
+    setTasks(updatedTasks)
+  }
 
   return (
     <>

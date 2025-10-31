@@ -6,7 +6,7 @@ const ListItem = ({ task, delTask,toggleComplete }) => {
     return (
         <div className="bg-white my-3 p-4 rounded-lg flex justify-between">
             <div className="flex">
-                <TaskStatus  taskId={task.id} taskStatus={task.complete} toggleComplete =  {toggleComplete}/>
+                <TaskStatus  taskId={task.id} taskStatus={task.completed} toggleComplete =  {toggleComplete}/>
                 <div className="flex flex-col ms-2">
                     <span className="font-bold">{task.task}</span>
                     <span>{format(task.createdOn, 'h:mm A, DD/MM/YYYY ')}</span>
