@@ -1,7 +1,32 @@
-import Listitem from "./Listitem"
+import AddTask from "./components/AddTask"
+import ListItem from "./components/ListItem"
+import { useState } from "react"
+
 
 function App() {
-  
+  const [tasks, setTasks] = useState([{
+    id: 1,
+    task: "Sample Task",
+    completed: false,
+    createdOn: new Date()
+  },])
+
+  const addNewTask = (taskDetails) => {
+    const newTask = {
+      id: tasks.length + 1,
+      task: taskDetails,
+      completed: false,
+      createdOn: new Date()
+    }
+    setTasks([...tasks, newTask])
+  }
+
+  const deleteTask = (taskId: number) => {
+    console.log(taskId)
+    const updatedTasks = tasks.filter((task) => task.id !== taskId)
+    setTasks(updatedTasks)
+  } 
+
   return (
     <>
     <div className ="h-screen w-screen flex justify-center bg-stone-100">
@@ -20,7 +45,13 @@ function App() {
         </div>
       </div>
       {/* end btns */}
-      <div><Listitem/></div>
+      <AddTask addNewTask={addNewTask} />
+        <div className="bg-slate-300 w-full rounded-lg mt-4 px-8 py-6">
+
+          {tasks.map((task) => (
+              <ListItem key={task.id} task={task} delTask={deleteTask} toggleComplete = {toggleComplete}/>
+            ))}
+        </div>
       {/* end list */}
       </div>
       </div>
