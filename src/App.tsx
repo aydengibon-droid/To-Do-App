@@ -5,6 +5,13 @@ import { useState } from "react"
 
 
 function App() {
+  interface Task{
+    id: number;
+    task: string;
+    completed: boolean;
+    createdOn: Date;
+  }
+  
   const [tasks, setTasks] = useState([{
     id: 1,
     task: "Sample Task",
@@ -24,7 +31,7 @@ function App() {
       completed: false,
       createdOn: new Date()
     }
-    setTasks([...tasks, newTask])
+    setTasks([...tasks, newTask]) 
   }
   const updateTask = (taskId: number,
     TaskDetails: string) => {
