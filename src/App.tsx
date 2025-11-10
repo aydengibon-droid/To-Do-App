@@ -6,19 +6,14 @@ import { useState } from "react"
 
 function App() {
   interface Task{
-    id: number;
-    task: string;
-    completed: boolean;
-    createdOn: Date;
+    id: number,
+    task: string,
+    completed: boolean,
+    createdOn: Date
   }
-  
-  const [tasks, setTasks] = useState([{
-    id: 1,
-    task: "Sample Task",
-    completed: false,
-    createdOn: new Date()
-  },])
 
+
+  const [tasks, setTasks] = useState<Task[]>([])
   const [taskToEdit, setTaskToEdit] = useState({
     id: 0,
     task: ""
