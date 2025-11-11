@@ -1,7 +1,7 @@
 import AddTask from "./Components/AddTask"
 import EditTask from "./Components/EditTask"
 import ListItem from "./Components/ListItem"
-import { useState } from "react"
+import {useEffect,useState } from "react"
 
 
 function App() {
@@ -18,6 +18,37 @@ function App() {
     id: 0,
     task: ""
   });
+
+   const [filter, setFilter] = useState<number>(0)
+
+  const handleFilterChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setFilter(parseInt(e.target.value))
+  }
+
+  useEffect(() => {
+    switch (filter) {
+      case 1:
+        setFilteredTasks(tasks.filter((task) => task.completed === true))
+        break
+      case 2:
+        setFilteredTasks(tasks.filter((task) => task.completed === false))
+        break
+      default:
+        setFilteredTasks(tasks)
+    }
+  }, [filter, tasks])
+
+  // use state variables to control visibility of add and edit task components
+  const [showAddTask, setShowAddTask] = useState(false)
+  const [showEditTask, setShowEditTask] = useState(false)
+
+  const showAddTaskComponent = () => {
+    setShowAddTask(!showAddTask)
+  }
+
+  const showEditTaskComponent = (state: boolean) => {
+    setShowEditTask(state)
+  }
 
   const addNewTask = (taskDetails: string) => {
     const newTask = {
